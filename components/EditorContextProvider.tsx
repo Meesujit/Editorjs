@@ -15,7 +15,7 @@ interface EditorContextType {
 // Create the context with the correct type
 export const EditorContext = createContext<EditorContextType | undefined>(undefined);
 
-const EditorContextProvider = ({ children }: { children: ReactNode }) => {
+const EditorContextProvider = () => {
   const editorInstanceRef = useRef<EditorJS | null>(null);
   const [editorContent, setEditorContent] = useState<any>(null);
   
@@ -59,7 +59,7 @@ const EditorContextProvider = ({ children }: { children: ReactNode }) => {
     <>
     <EditorContext.Provider value={{ editor: editorInstanceRef.current, submitEditorData, editorContent }}>
       <div id='editorjs' className=''></div>
-      {children}
+      
       <button onClick={submitEditorData} className='bg-zinc-700 w-1/4 h-10 mb-6 rounded-xl text-white'>Submit</button>
         {editorContent && (
           <div className="w-full h-1/4">
